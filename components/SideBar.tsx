@@ -4,7 +4,12 @@ import moment from "moment";
 
 
 type Props = {
-    context:Apiresponse};
+    context:Apiresponse
+    time:string
+   
+
+};
+    
 
     type Apiresponse = {
         list: ResponseList[];
@@ -51,6 +56,7 @@ type Props = {
 const SideBar = (props: Props) => {
     const result = props.context;
     const consition = result.list //.filter((obj)=>moment(obj.dt_txt).isSame(moment(),'day'))
+
     //console.log(consition)
 
   return (
@@ -58,7 +64,7 @@ const SideBar = (props: Props) => {
       <div className="flex lg:space-x-5">
         <p>Your City</p> <input type="text" />
       </div>
-      <p>{moment().format('h:mma').toString()} { moment().format('MMMM d, YYYY').toString() }</p>
+      <p className=" uppercase tracking-widest">{props.time }</p>
       <div className="flex items-center">
         <img
           src={`http://openweathermap.org/img/wn/${consition[0]?.weather[0].icon}@2x.png`}
