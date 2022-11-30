@@ -52,14 +52,14 @@ function ForcastTile({date, context}: Props) {
 
     const index = moment().isSame(date,'day')? 0:4
     //console.log(consition[index]?.dt_txt, ' ',days[date.day()], index , consition[index]?.weather[0].icon)
-    console.log( moment().isSame(date,'day'),days[date.day()],)
+    //console.log( moment().isSame(date,'day'),days[date.day()],)
   return (
     <div className='h-[200px] w-[170px] bg-white flex-col flex justify-evenly items-center rounded-md' >
         <h3>{days[date.day()]}</h3>
         <  img src={`http://openweathermap.org/img/wn/${consition[index]?.weather[0].icon}@2x.png`}
          alt="" className='h-[50px] w-[50px]'/>
-        <p>Humidity</p>
-        <h3>{consition[0]?.main?.humidity}%</h3>
+        <p className='text-1xl font-semibold'>{consition[index]?.weather[0].description}</p>
+        <h3 className='tracking-[2px] text-center text-1xl font-thin'>{(consition[index]?.main.temp - 273.15).toFixed(1)}°C%</h3>
     </div>
   )
 }
