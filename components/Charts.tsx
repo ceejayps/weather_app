@@ -48,7 +48,7 @@ type Props = {
    
 
 const Charts = ({context, colors}: Props) => {
-    console.log( "the color is" + colors[1])
+    
   return (
     <div className='lg:flex-[6_6_0]  w-full h-[60vh]  lg:h-full bg-slate-900 justify-center items-center lg:flex flex-col  p-5  lg:p-20 lg:rounded-r-xl space-y-10 '>
         <SplineGraph context={context} colors={colors}/>
