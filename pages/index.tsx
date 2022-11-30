@@ -57,8 +57,8 @@ export default function Home() {
       setPost(response.data);
     });
   }, []);
-if(context?.list){
-  return (
+
+  return context?.list[0]? (
   
     <div >
       
@@ -74,10 +74,8 @@ if(context?.list){
 
       
     </div>
-  )}
-  else{
-    return(
-      <div className='h-screen w-screen flex justify-center text-center items-center'>loading</div>
-    )
-  }
+  ):(<div className='h-screen w-screen flex justify-center text-center items-center text-4xl uppercase'><p>Loading...</p></div>)
 }
+  
+      
+  
