@@ -47,7 +47,7 @@ type Props = {
 
 const Charts = ({context}: Props) => {
   return (
-    <div className='lg:flex-[6_6_0]  w-full h-[60vh] lg:h-screen lg:h-full bg-slate-900 justify-center items-center lg:flex flex-col  p-5  lg:p-20 lg:rounded-r-xl space-y-10 '>
+    <div className='lg:flex-[6_6_0]  w-full h-[60vh]  lg:h-full bg-slate-900 justify-center items-center lg:flex flex-col  p-5  lg:p-20 lg:rounded-r-xl space-y-10 '>
         <SplineGraph context={context}/>
         <DaileyForcast context={context}/>
     </div>
