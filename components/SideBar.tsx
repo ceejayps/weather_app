@@ -51,7 +51,7 @@ type Props = {
 const SideBar = (props: Props) => {
     const result = props.context;
     const consition = result.list //.filter((obj)=>moment(obj.dt_txt).isSame(moment(),'day'))
-    console.log(consition)
+    //console.log(consition)
 
   return (
     <div className="  lg:my-0 lg:mx-20  flex flex-col justify-center items-center h-screen lg:h-full space-y-10 lg:flex-[2_2_0] lg:rounded-lg ">
@@ -66,7 +66,11 @@ const SideBar = (props: Props) => {
           width={200}
           height={200}
         />
+        <div>
         <h1 className="text-5xl font-semibold">{(consition[0]?.main.temp - 273.15).toFixed(1)}°C</h1>
+        <p className=" tracking-[2px] text-center text-1xl font-thin">{(consition[0]?.main.temp_min - 273.15).toFixed(1)}°C - {(consition[0]?.main.temp_max - 273.15).toFixed(1)}°C</p>
+        </div>
+        
       </div>
       <h1 className="text-4xl font-semibold">{consition[0]?.weather[0].description}</h1>
       <div className="flex space-x-4">
