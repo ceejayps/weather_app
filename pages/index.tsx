@@ -59,7 +59,7 @@ export default function Home() {
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-      //console.log(response)
+      //console.log(response.data?.list.slice(0, 7))
       const max = Math.max(
         ...response.data?.list?.slice(0, 7).map((n: { main: { temp_max: number; }; }) => n.main.temp_max - 273.15)
       )
@@ -85,17 +85,13 @@ export default function Home() {
       setPost(response.data);
       const colorArray = ['']
       colorArray.pop()
-      for (let index = 0; index < 8; index++) {
+      for (let index = 0; index < 7; index++) {
         if(index == min_index) colorArray.push('blue') //console.log("blue", index, min_index)
         if(index == max_index) colorArray.push('red')//console.log("red", index, max_index)
         if(index != max_index || index != min_index) colorArray.push('transparent')//console.log("transparent", index, min_index, max_index)
         setcolors(colorArray)
-      }
-    
-      
+      } 
     }
-    
-    
     );
   }, []);
 
@@ -113,30 +109,6 @@ export default function Home() {
       clearInterval(interval);
     };
   }, []);
-
-
-
-  //const consition = context.list.filter((obj)=>moment(obj.dt_txt).isSame(moment().add(1,'days'),'day'))
-  //console.log(consition)
-
-
-
-
-
-
-//console.log(min, max)
-
-
-
-
-  
-
-
-  // toUpdateColors[min_index] = "blue",
-  // toUpdateColors[max_index] = "red",
-
-  // setcolors(toUpdateColors)
-
 
 
   return context?.list[0] ? (
