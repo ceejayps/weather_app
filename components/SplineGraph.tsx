@@ -13,6 +13,7 @@ Chartjs.register(CategoryScale, LinearScale, LineElement, PointElement);
 
 type Props = {
   context: Apiresponse;
+  colors:string[]
 };
 
 type Apiresponse = {
@@ -55,36 +56,28 @@ type ResponseList = {
 
 
 const SplineGraph = (props: Props) => {
+   // console.log(props.colors)
   const consition = props.context.list?.filter((n) =>
     moment(n.dt_txt).isSame(moment("2022-12-4"), "day")
   );
   //console.log(consition.map((n)=> n.main.temp_min -273.15))
 
-  const labels = consition.map((n) => moment(n.dt_txt).format("h:mma"));
+  const labels = consition.slice(0, 7).map((n) => moment(n.dt_txt).format("h:mma"));
   const min = Math.min(
-    ...props.context.list.map((n) => n.main.temp_min - 273.15)
+    ...props.context.list.slice(0, 7).map((n) => n.main.temp_min - 273.15)
   );
   const max = Math.max(
-    ...props.context.list.map((n) => n.main.temp_max - 273.15)
+    ...props.context.list.slice(0, 7).map((n) => n.main.temp_max - 273.15)
   );
   const min_index = [
-    Math.min(...props.context.list.map((n) => n.main.temp_min - 273.15)) + 1,
-    ...props.context.list.map((n) => n.main.temp - 273.15),
+    Math.min(...props.context.list.slice(0, 7).map((n) => n.main.temp_min - 273.15)) + 1,
+    ...props.context.list.slice(0, 7).map((n) => n.main.temp - 273.15),
   ].indexOf(min);
   const max_index = [
-    Math.min(...props.context.list.map((n) => n.main.temp_min - 273.15)) + 1,
-    ...props.context.list.map((n) => n.main.temp - 273.15),
+    Math.min(...props.context.list.slice(0, 7).map((n) => n.main.temp_min - 273.15)) + 1,
+    ...props.context.list.slice(0, 7).map((n) => n.main.temp - 273.15),
   ].indexOf(max);
 
-const colors = ["transparent",
-"red",
-"transparent",
-"transparent",
-"transparent",
-"transparent",
-"transparent",
-"transparent",
-"transparent",]
 
 //const [colors, setcolors] = React.useState(['']);
 // toUpdateColors[min_index] = "blue",
@@ -106,12 +99,12 @@ const colors = ["transparent",
     datasets: [
       {
         data: [
-            props.context.list.map((n) => n.main.temp - 273.15)[0]-1,
-          ...props.context.list.map((n) => n.main.temp - 273.15),
+            props.context.list.slice(0, 7).map((n) => n.main.temp - 273.15)[0]-1,
+          ...props.context.list.slice(0, 7).map((n) => n.main.temp - 273.15),
         ],
         backgroundColor: "transparent",
         borderColor: ["blue", "red"],
-        pointBorderColor: colors,
+        pointBorderColor: props.colors,
         pointBorderWidth: 6,
         tension: 0.5,
       },
@@ -150,11 +143,11 @@ const colors = ["transparent",
       },
       y: {
         min: Math.min(
-          ...props.context.list.map((n) => n.main.temp_min - 273.15)
-        ),
+          ...props.context.list.slice(0, 7).map((n) => n.main.temp_min - 273.15)
+        )-2,
         max: Math.max(
-          ...props.context.list.map((n) => n.main.temp_max - 273.15)
-        ),
+          ...props.context.list.slice(0, 7).map((n) => n.main.temp_max - 273.15)
+        ) + 2,
         border: { display: false },
         grid: { display: false },
         ticks: {
