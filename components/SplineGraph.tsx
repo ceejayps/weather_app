@@ -52,7 +52,7 @@ type ResponseList = {
   sys: object;
   dt_txt: string;
 };
-//const [colors, setcolors] = React.useState(['']);
+
 
 const SplineGraph = (props: Props) => {
   const consition = props.context.list?.filter((n) =>
@@ -85,6 +85,8 @@ const colors = ["transparent",
 "transparent",
 "transparent",
 "transparent",]
+
+//const [colors, setcolors] = React.useState(['']);
 // toUpdateColors[min_index] = "blue",
 // toUpdateColors[max_index] = "red",
 
@@ -104,8 +106,7 @@ const colors = ["transparent",
     datasets: [
       {
         data: [
-          Math.min(...props.context.list.map((n) => n.main.temp_min - 273.15)) +
-            1,
+            props.context.list.map((n) => n.main.temp - 273.15)[0]-1,
           ...props.context.list.map((n) => n.main.temp - 273.15),
         ],
         backgroundColor: "transparent",
@@ -162,7 +163,7 @@ const colors = ["transparent",
       },
     },
   };
-  return (
+  return(
     <div className=" lg:w-[100%] lg:max-w-[80%]  h-[200px] flex justify-start items-start flex-col relative ">
       <p className=" text-3xl text-white font-light">Temperature</p>
       <h4 className="text-3xl text-white font-light absolute top-14 left-40">
@@ -170,7 +171,7 @@ const colors = ["transparent",
       </h4>
       <Line data={data} options={options} />
     </div>
-  );
+  )
 };
 
 export default SplineGraph;
