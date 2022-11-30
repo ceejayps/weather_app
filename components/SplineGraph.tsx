@@ -79,11 +79,6 @@ const SplineGraph = (props: Props) => {
   ].indexOf(max);
 
 
-//const [colors, setcolors] = React.useState(['']);
-// toUpdateColors[min_index] = "blue",
-// toUpdateColors[max_index] = "red",
-
-// setcolors(toUpdateColors)
   
   const data = {
     labels: [
@@ -116,18 +111,6 @@ const SplineGraph = (props: Props) => {
     plugins: {
       legend: {
         display: false,
-      },
-
-      autocolors: false,
-      annotation: {
-        annotations: {
-          point1: {
-            type: "point",
-            xValue: 2,
-            yValue: 2,
-            backgroundColor: "rgba(255, 99, 132, 0.25)",
-          },
-        },
       },
     },
     scales: {
