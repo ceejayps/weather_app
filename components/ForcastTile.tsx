@@ -1,6 +1,7 @@
+import { Moment } from 'moment'
 import React from 'react'
 
-type Props = {context: object}
+type Props = {context: object, date:Moment}
 
 function ForcastTile({}: Props) {
   return (
