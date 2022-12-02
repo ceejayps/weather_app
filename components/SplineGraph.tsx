@@ -57,9 +57,8 @@ type ResponseList = {
 
 const SplineGraph = (props: Props) => {
    // console.log(props.colors)
-  const consition = props.context.list?.filter((n) =>
-    moment(n.dt_txt).isSame(moment("2022-12-4"), "day")
-  );
+  const consition = props.context.list
+  // .filter((n) => moment(n.dt_txt).isSame(moment("2022-12-4"), "day");
   //console.log(consition.map((n)=> n.main.temp_min -273.15))
 
   const labels = consition.slice(0, 7).map((n) => moment(n.dt_txt).format("h:mma"));
