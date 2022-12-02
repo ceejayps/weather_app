@@ -59,7 +59,7 @@ export default function Home() {
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-      //console.log(response.data?.list.slice(0, 7))
+      console.log(...response.data?.list.slice(0, 7).map((n: { main: { temp: number; temp_min:number, temp_max:number }; }) => n.main.temp_min - 273.15))
       const max = Math.max(
         ...response.data?.list?.slice(0, 7).map((n: { main: { temp_max: number; }; }) => n.main.temp_max - 273.15)
       )
@@ -72,11 +72,9 @@ export default function Home() {
       setMin( min)
 
       const min_index = [
-        Math.min(...response.data?.list.slice(0, 7).map((n: { main: { temp_min: number; }; }) => n.main.temp_min - 273.15)) + 1,
         ...response.data?.list.slice(0, 7).map((n: { main: { temp: number; }; }) => n.main.temp - 273.15),
       ].indexOf(min);
       const max_index = [
-        Math.min(...response.data?.list.slice(0, 7).map((n: { main: { temp_min: number; }; }) => n.main.temp_min - 273.15)) + 1,
         ...response.data?.list.slice(0, 7).map((n: { main: { temp: number; }; }) => n.main.temp - 273.15),
       ].indexOf(max);
 
@@ -85,15 +83,18 @@ export default function Home() {
       setPost(response.data);
       const colorArray = ['']
       colorArray.pop()
-      for (let index = 0; index < 7; index++) {
+      for (let index = 1; index < 7; index++) {
         if(index == min_index) colorArray.push('blue') //console.log("blue", index, min_index)
         if(index == max_index) colorArray.push('red')//console.log("red", index, max_index)
         if(index != max_index || index != min_index) colorArray.push('transparent')//console.log("transparent", index, min_index, max_index)
+        if(index == 0)colorArray.push("white")
         setcolors(colorArray)
       } 
     }
     );
   }, []);
+  console.log(colors, min, max, min_index, max_index)
+  
 
   const [time, setTime] = React.useState("");
 
