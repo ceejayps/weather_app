@@ -67,7 +67,7 @@ const SideBar = (props: Props) => {
       <p className=" uppercase tracking-widest">{props.time }</p>
       <div className="flex items-center">
         <img
-          src={`http://openweathermap.org/img/wn/${consition[0]?.weather[0].icon}@2x.png`}
+          src={`https://openweathermap.org/img/wn/${consition[0]?.weather[0].icon}@2x.png`}
           alt=""
           width={200}
           height={200}
