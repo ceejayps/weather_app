@@ -9,7 +9,7 @@ import { Colors } from "chart.js";
 //import styles from '../styles/Home.module.css'
 
 const baseURL =
-  "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=1ecd0e017b429cfd0898dfee1e03a465&q=kingston,jm";
+  "https://api.openweathermap.org/data/2.5/forecast?id=524901&appid=1ecd0e017b429cfd0898dfee1e03a465&q=kingston,jm";
 
 export default function Home() {
   type Apiresponse = {
