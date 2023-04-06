@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Charts from "../components/charts";
+import Charts from "../components/Charts";
 import SideBar from "../components/SideBar";
 import axios from "axios";
 import React from "react";
